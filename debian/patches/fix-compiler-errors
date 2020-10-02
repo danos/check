@@ -1,0 +1,11 @@
+--- a/src/check_pack.c
++++ b/src/check_pack.c
+@@ -324,7 +324,7 @@
+ 
+     n = pack(type, &buf, msg);
+     /* Keep it on the safe side to not send too much data. */
+-    if(n > get_max_msg_size())
++    if((size_t)n > get_max_msg_size())
+         eprintf("Message string too long", __FILE__, __LINE__ - 2);
+ 
+     pthread_cleanup_push(ppack_cleanup, &ck_mutex_lock);
